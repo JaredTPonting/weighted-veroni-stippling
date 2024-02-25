@@ -14,9 +14,9 @@ def main():
     SCREEN_HEIGHT = WIDTH
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption('Learning PyGame')
+    pygame.display.set_caption('Delaunay Triangles')
 
-
+    RADIUS = 2
 
     def create_random_vectors(max_x, max_y, number):
         output = []
@@ -25,7 +25,7 @@ def main():
 
         return np.array(output)
 
-    points = create_random_vectors(WIDTH, HEIGHT, 1000)
+    points = create_random_vectors(WIDTH, HEIGHT, 500)
     tri = Delaunay(points)
     triangles = points[tri.simplices]
 
@@ -39,7 +39,7 @@ def main():
             pygame.draw.line(screen, color=(0, 0, 0), start_pos=triangle[1], end_pos=triangle[2])
 
         for point in points:
-            pygame.draw.circle(screen, (255, 0, 0), (point[0], point[1]), radius=5)
+            pygame.draw.circle(screen, (255, 0, 0), (point[0], point[1]), radius=RADIUS)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
